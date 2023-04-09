@@ -23,7 +23,7 @@
 ## To be implemented/done
 
 - Clean up the code for 1.0 (especially Piece/Board classes)
-- Visual bug: 
+- Visual bug: The held piece should be made to appear on the very top
 - A basic level advancement system
 - A Button class (UI, not only for the menu, but also in-game, as the pieces will be accesed by the buttons on the side, as seen in the mock-up)
 - Texture Loader for the pieces, the
