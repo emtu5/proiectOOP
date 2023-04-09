@@ -93,7 +93,7 @@ endif()
 ###############################################################################
 
 # NOTE: update executable name in .github/workflows/cmake.yml:25 when changing name here
-add_executable(${PROJECT_NAME} main.cpp sources/Engine.cpp headers/Engine.h) # sources/Cell.cpp headers/Cell.h)
+add_executable(${PROJECT_NAME} main.cpp sources/Engine.cpp headers/Engine.h sources/Piece.cpp headers/Piece.h sources/Board.cpp headers/Board.h sources/Level.cpp headers/Level.h)
 
 ###############################################################################
 

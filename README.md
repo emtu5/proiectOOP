@@ -1,31 +1,66 @@
-# OOP Template
+# Temple Stones v0.6
+
+- A game where you place pieces on a board in order to fulfill certain winning conditions (such as filling up the board completely, all but one tile etc.).
+
+- A very rough mock-up of what the final game will look like (none of the assets are final):
+![](https://i.imgur.com/M5zQM2d.png)
+
+- Right now, the game looks like this:
+![](https://i.imgur.com/5fd3M14.png)
+## How to play
+
+- Place pieces on the board with your mouse.
+- Left Click: Picks up a piece. Click again to release it. If the piece has space to fit on the board, it will be placed on it.
+- Right CLick: Rotates the held piece clockwise.
+- Middle Click: Flips the piece.
+
+### Current state of the game
+
+- Basic piece placement logic has been implemented, as well as a super-basic level file parser.
+- Currently there is only one level that's immediately loaded at startup (and only that, I haven't coded any logic for advancing to other levels). In the future there will not only be multiple levels, but also a dedicated level select screen.
+- You can toy around with the pieces on the predefined board.
+
+## To be implemented/done
+
+- Clean up the code for 1.0 (especially Piece/Board classes)
+- Visual bug: 
+- A basic level advancement system
+- A Button class (UI, not only for the menu, but also in-game, as the pieces will be accesed by the buttons on the side, as seen in the mock-up)
+- Texture Loader for the pieces, the
+- A level select screen (Menu class, and so much more)
+- Save files
+- Implement win conditions for different board types
+- Make Engine class singleton
+- Exception handling (missing level files, assets)
+- Make a config file for window size
+- Basic sounds
 
 ### Tema 0
 
-- [ ] Nume proiect (poate fi schimbat ulterior)
-- [ ] Scurtă descriere a temei alese, ce v-ați propus să implementați
+- [x] Nume proiect (poate fi schimbat ulterior)
+- [x] Scurtă descriere a temei alese, ce v-ați propus să implementați
 
 ## Tema 1
 
 #### Cerințe
-- [ ] definirea a minim 3-4 clase folosind compunere
-- [ ] constructori de inițializare
+- [x] definirea a minim 3-4 clase folosind compunere
+- [x] constructori de inițializare
 - [ ] pentru o clasă: constructor de copiere, `operator=` de copiere, destructor
 <!-- - [ ] pentru o altă clasă: constructor de mutare, `operator=` de mutare, destructor -->
 <!-- - [ ] pentru o altă clasă: toate cele 5 funcții membru speciale -->
-- [ ] `operator<<` pentru toate clasele pentru afișare (std::ostream)
-- [ ] cât mai multe `const` (unde este cazul)
-- [ ] implementarea a minim 3 funcții membru publice pentru funcționalități specifice temei alese
-- [ ] scenariu de utilizare a claselor definite:
+- [x] `operator<<` pentru toate clasele pentru afișare (std::ostream)
+- [x] cât mai multe `const` (unde este cazul)
+- [x] implementarea a minim 3 funcții membru publice pentru funcționalități specifice temei alese
+- [x] scenariu de utilizare a claselor definite:
   - crearea de obiecte și apelarea funcțiilor membru publice în main
   - vor fi adăugate în fișierul `tastatura.txt` exemple de date de intrare de la tastatură (dacă există)
-- [ ] tag de `git`: de exemplu `v0.1`
-- [ ] serviciu de integrare continuă (CI); exemplu: GitHub Actions
+- [x] tag de `git`: de exemplu `v0.1`
+- [] serviciu de integrare continuă (CI); exemplu: GitHub Actions
 
 ## Tema 2
 
 #### Cerințe
-- [ ] separarea codului din clase în `.h` (sau `.hpp`) și `.cpp`
+- [x] separarea codului din clase în `.h` (sau `.hpp`) și `.cpp`
 - [ ] moșteniri
   - [ ] clasă cu atribut de tip pointer la o clasă de bază cu derivate
   - [ ] funcții virtuale (pure) apelate prin pointeri de bază din clasa de mai sus, constructori virtuali (clone)
@@ -54,5 +89,5 @@
 
 ## Resurse
 
-- [SFML](https://github.com/SFML/SFML/tree/aa82ea132b9296a31922772027ad5d14c1fa381b) (Zlib)
-- adăugați trimiteri către resursele externe care v-au ajutat sau pe care le-ați folosit
+- [SFML](https://github.com/SFML/SFML/tree/aa82ea132b9296a31922772027ad5d14c1fa381b) (Zlib), [Documentație] (https://www.sfml-dev.org/documentation/2.5.1/)
+- [Tutorial Snake](https://www.youtube.com/playlist?list=PLbPaYYCufiXzbKTwPpYpgkUplgsCscEm6) (ca să mă obișnuiesc cu SFML)

@@ -2,7 +2,8 @@
 
 int main()
 {
-    sf::Vector2 resolution(800, 600);
+    std::srand(time(nullptr));
+    sf::Vector2i resolution(800, 600);
     Engine engine(resolution);
     engine.run();
     return 0;
