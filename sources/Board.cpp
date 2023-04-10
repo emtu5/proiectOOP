@@ -35,7 +35,7 @@ Board::Board(const std::vector<std::string> &layout) : boardLayout{{{0}}}, posit
 }
 
 //
-sf::Vector2i Board::isClicked(sf::Vector2i &clickPosition) const {
+sf::Vector2i Board::isClicked(const sf::Vector2i &clickPosition) const {
     sf::Vector2i relativePosition = clickPosition - position;
     return {relativePosition.y / BOARD_CELL_SIZE, relativePosition.x / BOARD_CELL_SIZE};
 }
@@ -92,7 +92,7 @@ bool Board::placePiece(Piece &piece, sf::Vector2i &clickPosition) {
     return true;
 }
 
-void Board::removePiece(char &id) {
+void Board::removePiece(const char &id) {
     for (int i = 0; i < MAX_BOARD_LENGTH; i++) {
         for (int j = 0; j < MAX_BOARD_LENGTH; j++) {
             if (boardLayout[i][j] == id) {
