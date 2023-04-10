@@ -61,14 +61,11 @@ void Piece::updatePosition(const sf::Vector2i &cursorPosition) {
     Piece::position = cursorPosition - sf::Vector2i{offset, offset};
 }
 
-Piece::Piece(const std::vector<std::string> &layout, char &_id, bool &rotate, bool &flip) : pieceLayout{{{0}}}, id{_id}, canRotate{rotate}, canFlip(flip) {
+Piece::Piece(const std::vector<std::string> &layout, char &_id, bool &rotate, bool &flip) : pieceLayout{{{0}}}, position({std::rand() % AREA_TO_SPAWN, std::rand() % AREA_TO_SPAWN}),
+                                                                                            rf(std::rand() % 256), gf(std::rand() % 256), bf(std::rand() % 256),
+                                                                                            ro(std::rand() % 256), go(std::rand() % 256), bo(std::rand() % 256),
+                                                                                            id{_id}, canRotate{rotate}, canFlip(flip) {
     std::cout << "new piece lol " << id << '\n';
-    rf = std::rand() % 256;
-    gf = std::rand() % 256;
-    bf = std::rand() % 256;
-    ro = std::rand() % 256;
-    go = std::rand() % 256;
-    bo = std::rand() % 256;
     for (int i = 0; i < MAX_PIECE_LENGTH; i++) {
         for (int j = 0; j < MAX_PIECE_LENGTH; j++) {
             pieceLayout[i][j] = layout[i][j];

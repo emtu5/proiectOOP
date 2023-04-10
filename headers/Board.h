@@ -34,9 +34,9 @@ public:
     Board();
     explicit Board(const std::vector<std::string>&);
     void draw(sf::RenderTarget &, sf::RenderStates) const override;
-    sf::Vector2i isClicked(sf::Vector2i &) const;
+    sf::Vector2i isClicked(const sf::Vector2i &) const;
     bool placePiece(Piece &, sf::Vector2i &);
-    void removePiece(char &);
+    void removePiece(const char &);
     friend std::ostream& operator<< (std::ostream &, const Board &);
 
     ~Board() override;

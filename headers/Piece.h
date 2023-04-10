@@ -14,6 +14,7 @@ const int CELL_SIZE = 50;
 const int MAX_PIECE_LENGTH = 5;
 const int PIECE_X = 20;
 const int PIECE_Y = 20;
+const int AREA_TO_SPAWN = 300;
 
 class Piece : public sf::Drawable {
 
