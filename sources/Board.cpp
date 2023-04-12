@@ -40,7 +40,7 @@ sf::Vector2i Board::isClicked(const sf::Vector2i &clickPosition) const {
     return {relativePosition.y / BOARD_CELL_SIZE, relativePosition.x / BOARD_CELL_SIZE};
 }
 
-bool Board::placePiece(Piece &piece, sf::Vector2i &clickPosition) {
+bool Board::placePiece(Piece &piece, const sf::Vector2i &clickPosition) {
     //Check if piece fits
     //NOTE: Piece is centered according to the cursor
 
