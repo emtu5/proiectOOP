@@ -20,6 +20,8 @@ private:
     sf::VideoMode videoMode;
 public:
     explicit Engine(sf::Vector2i res);
+    Engine(const Engine &) = delete;
+    Engine &operator= (const Engine &) = delete;
     void run();
     void input();
     void draw();
