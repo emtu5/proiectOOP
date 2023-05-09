@@ -22,6 +22,7 @@
 
 ## To be implemented/done
 
+- I FORGOT ONE TASK FROM TEMA 1, HOW (I'm going to sleep, it's 3am, will fix soon)
 - Clean up the code for 1.0 (especially Piece/Board classes)
 - Visual bug: A picked up tile should be placed on the very top (there's no code yet that moves a piece to the front) 
 - A basic level advancement system
