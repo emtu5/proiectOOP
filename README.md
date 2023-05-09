@@ -1,4 +1,4 @@
-# Temple Stones v1.0.1
+# Temple Stones v1.0
 
 - A game where you place pieces on a board in order to fulfill certain winning conditions (such as filling up the board completely, all but one tile etc.).
 
