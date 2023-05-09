@@ -21,7 +21,7 @@ public:
 
     Board &getCurrentBoard();
 
-    virtual ~Level();
+    ~Level();
 };
 
 
