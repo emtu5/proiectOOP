@@ -31,8 +31,8 @@ void Piece::flipPiece() {
 void Piece::draw(sf::RenderTarget &target, sf::RenderStates) const {
     sf::Vector2i cellPos;
     sf::RectangleShape rectangle{sf::Vector2f(CELL_SIZE - 2, CELL_SIZE - 2)};
-    rectangle.setFillColor({rf, gf, bf});
-    rectangle.setOutlineColor({ro, go, bo});
+    rectangle.setFillColor(fillColour);
+    rectangle.setOutlineColor(outlineColour);
     rectangle.setOutlineThickness(1);
     cellPos.y = position.y;
     for (int i = 0; i < MAX_PIECE_LENGTH; i++) {
@@ -62,8 +62,8 @@ void Piece::updatePosition(const sf::Vector2i &cursorPosition) {
 }
 
 Piece::Piece(const std::vector<std::string> &layout, char &_id, bool &rotate, bool &flip) : pieceLayout{{{0}}}, position({std::rand() % AREA_TO_SPAWN, std::rand() % AREA_TO_SPAWN}),
-                                                                                            rf(std::rand() % 256), gf(std::rand() % 256), bf(std::rand() % 256),
-                                                                                            ro(std::rand() % 256), go(std::rand() % 256), bo(std::rand() % 256),
+                                                                                            fillColour(std::rand() % 256, std::rand() % 256, std::rand() % 256),
+                                                                                            outlineColour(std::rand() % 256, std::rand() % 256, std::rand() % 256),
                                                                                             id{_id}, canRotate{rotate}, canFlip(flip) {
     std::cout << "new piece lol " << id << '\n';
     for (int i = 0; i < MAX_PIECE_LENGTH; i++) {
@@ -75,7 +75,7 @@ Piece::Piece(const std::vector<std::string> &layout, char &_id, bool &rotate, bo
 
 Piece::Piece() :    pieceLayout{{{0}}},
                     position(PIECE_X, PIECE_Y),
-                    rf(0), gf(255), bf(255), ro(0), go(0), bo(255),
+                    fillColour(0, 255, 255), outlineColour(0, 255, 255),
                     id('a'),
                     canRotate(true),
                     canFlip(true) {}

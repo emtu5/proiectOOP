@@ -21,7 +21,7 @@ class Piece : public sf::Drawable {
 private:
     std::array<std::array<char, MAX_PIECE_LENGTH>, MAX_PIECE_LENGTH> pieceLayout;
     sf::Vector2i position;
-    sf::Uint8 rf, gf, bf, ro, go, bo;
+    sf::Color fillColour, outlineColour;
     char id;
     bool canRotate;
     bool canFlip;

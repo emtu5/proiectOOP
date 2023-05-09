@@ -54,7 +54,7 @@ void Engine::leftClick() {
     if (heldPiece == nullptr) {
         //Grab the Piece
         auto &inv = currentLevel.getPieceInventory();
-        for (auto ptr = inv.rbegin(); ptr < inv.rend(); ptr++) {
+        for (auto ptr = inv.rbegin(); ptr < inv.rend(); ++ptr) {
             if (ptr->isClicked(sf::Mouse::getPosition(window))) {
                 heldPiece = &(*ptr);
                 heldPiece->updatePosition(sf::Mouse::getPosition(window));
