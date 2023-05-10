@@ -32,11 +32,14 @@ private:
     sf::Vector2i position;
 public:
     Board();
+
     explicit Board(const std::vector<std::string>&);
     void draw(sf::RenderTarget &, sf::RenderStates) const override;
     [[nodiscard]] sf::Vector2i isClicked(const sf::Vector2i &) const;
     bool placePiece(Piece &, const sf::Vector2i &);
     void removePiece(const char &);
+
+    [[maybe_unused]] Board(const Board&);
     friend std::ostream& operator<< (std::ostream &, const Board &);
 
     ~Board() override;
