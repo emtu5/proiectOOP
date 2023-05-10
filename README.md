@@ -1,4 +1,4 @@
-# Temple Stones v1.0
+# Temple Stones v1.0.1
 
 - A game where you place pieces on a board in order to fulfill certain winning conditions (such as filling up the board completely, all but one tile etc.).
 
@@ -22,7 +22,7 @@
 
 ## To be implemented/done
 
-- I FORGOT ONE TASK FROM TEMA 1, HOW (I'm going to sleep, it's 3am, will fix soon)
+- Fix release tag not putting in the resources folder
 - Clean up the code for 1.0 (especially Piece/Board classes)
 - Visual bug: A picked up tile should be placed on the very top (there's no code yet that moves a piece to the front) 
 - A basic level advancement system
@@ -46,7 +46,7 @@
 #### Cerințe
 - [x] definirea a minim 3-4 clase folosind compunere
 - [x] constructori de inițializare
-- [ ] pentru o clasă: constructor de copiere, `operator=` de copiere, destructor
+- [x] pentru o clasă: constructor de copiere, `operator=` de copiere, destructor
 <!-- - [ ] pentru o altă clasă: constructor de mutare, `operator=` de mutare, destructor -->
 <!-- - [ ] pentru o altă clasă: toate cele 5 funcții membru speciale -->
 - [x] `operator<<` pentru toate clasele pentru afișare (std::ostream)
