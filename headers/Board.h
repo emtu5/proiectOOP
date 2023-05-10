@@ -39,7 +39,8 @@ public:
     bool placePiece(Piece &, const sf::Vector2i &);
     void removePiece(const char &);
 
-    [[maybe_unused]] Board(const Board&);
+    [[maybe_unused]] Board(const Board &);
+    Board& operator= (const Board &);
     friend std::ostream& operator<< (std::ostream &, const Board &);
 
     ~Board() override;

@@ -115,4 +115,10 @@ std::ostream &operator<<(std::ostream &os, const Board &b) {
 
 [[maybe_unused]] Board::Board(const Board &other) : boardLayout{other.boardLayout}, position{other.position} {}
 
+Board &Board::operator=(const Board &other) {
+    boardLayout = other.boardLayout;
+    position = other.position;
+    return *this;
+}
+
 Board::~Board() = default;
