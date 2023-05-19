@@ -1,4 +1,4 @@
-# Temple Stones v1.0.1
+# Temple Stones v1.1.0
 
 - A game where you place pieces on a board in order to fulfill certain winning conditions (such as filling up the board completely, all but one tile etc.).
 
@@ -22,16 +22,12 @@
 
 ## To be implemented/done
 
-- Fix release tag not putting in the resources folder
-- Clean up the code for 1.0 (especially Piece/Board classes)
-- Visual bug: A picked up tile should be placed on the very top (there's no code yet that moves a piece to the front) 
 - A basic level advancement system
 - A Button class (UI, not only for the menu, but also in-game, as the pieces will be accesed by the buttons on the side, as seen in the mock-up)
-- Texture Loader for the pieces, the
+- Texture Loader for the pieces (a good one, right now it's just a class with a static map, will probably template)
 - A level select screen (Menu class, and so much more)
 - Save files
 - Implement win conditions for different board types
-- Make Engine class singleton
 - Exception handling (missing level files, assets)
 - Make a config file for window size
 - Basic sounds
@@ -66,23 +62,23 @@
   - [ ] clasă cu atribut de tip pointer la o clasă de bază cu derivate
   - [ ] funcții virtuale (pure) apelate prin pointeri de bază din clasa de mai sus, constructori virtuali (clone)
     - minim o funcție virtuală va fi **specifică temei** (e.g. nu simple citiri/afișări)
-  - [ ] apelarea constructorului din clasa de bază din constructori din derivate
-  - [ ] smart pointers
+  - [x] apelarea constructorului din clasa de bază din constructori din derivate
+  - [x] smart pointers
   - [ ] `dynamic_cast`
 - [ ] suprascris cc/op= pentru copieri/atribuiri corecte, copy and swap
 - [ ] excepții
   - [ ] ierarhie proprie cu baza `std::exception` sau derivată din `std::exception`; minim 2 clase pentru erori specifice
   - [ ] utilizare cu sens: de exemplu, `throw` în constructor, `try`/`catch` în `main`
-- [ ] funcții și atribute `static`
-- [ ] STL
-- [ ] cât mai multe `const`
+- [x] funcții și atribute `static`
+- [x] STL
+- [x] cât mai multe `const`
 - [ ] la sfârșit: commit separat cu adăugarea unei noi derivate fără a modifica restul codului
 - [ ] tag de `git`: de exemplu `v0.2`
 
 ## Tema 3
 
 #### Cerințe
-- [ ] 2 șabloane de proiectare (design patterns)
+- [ ] 2 șabloane de proiectare (design patterns) (1/3, singleton so far)
 - [ ] o funcție șablon (template) cu sens; minim 2 instanțieri
 - [ ] o clasă șablon cu sens; minim 2 instanțieri
 <!-- - [ ] o specializare pe funcție/clasă șablon -->
