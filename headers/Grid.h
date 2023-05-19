@@ -16,7 +16,7 @@ class Grid : public sf::Drawable {
 protected:
     std::vector<std::string> gridLayout;
     int tileSize;
-    char id;
+    char tileId;
     sf::Vector2i position;
     std::shared_ptr<sf::Texture> tileTexture;
 

@@ -4,11 +4,11 @@
 
 #include "../headers/Grid.h"
 
-Grid::Grid(const std::vector<std::string> &layout, int size, char id_, const sf::Vector2i &pos = {20, 20}) : gridLayout{layout},
+Grid::Grid(const std::vector<std::string> &layout, int size, char id, const sf::Vector2i &pos = {20, 20}) : gridLayout{layout},
                                                                                                                    tileSize{size},
-                                                                                                                   id{id_},
+                                                                                                                   tileId{id},
                                                                                                                    position{pos} {
-    tileTexture = Textures::getTileTexture(id);
+    tileTexture = Textures::getTileTexture(tileId);
 }
 
 const std::vector<std::string> &Grid::getGridLayout() const {
@@ -39,5 +39,5 @@ sf::Vector2i Grid::whereClicked(const sf::Vector2i &clickPosition) const {
 }
 
 char Grid::getId() const {
-    return id;
+    return tileId;
 }
