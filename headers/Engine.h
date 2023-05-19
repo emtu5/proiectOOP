@@ -15,13 +15,20 @@
 class Engine {
 private:
     Level currentLevel;
-    Piece* heldPiece;
+    std::shared_ptr<Board> currentBoard;
+    std::vector<std::shared_ptr<Piece>> currentPieceInventory;
+    std::shared_ptr<Piece> heldPiece;
     sf::RenderWindow window;
     sf::VideoMode videoMode;
-public:
+
+    // Singleton
     explicit Engine(sf::Vector2i res);
+
+public:
     Engine(const Engine &) = delete;
     Engine &operator= (const Engine &) = delete;
+    static Engine& get_engine(sf::Vector2i);
+
     void run();
     void input();
     void draw();

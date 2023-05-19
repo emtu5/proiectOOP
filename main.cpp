@@ -4,7 +4,7 @@ int main()
 {
     std::srand(time(nullptr));
     sf::Vector2i resolution(800, 600);
-    Engine engine(resolution);
+    Engine &engine = Engine::get_engine(resolution);
     engine.run();
     return 0;
 }

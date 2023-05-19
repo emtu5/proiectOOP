@@ -4,13 +4,18 @@
 
 #include "../headers/Engine.h"
 
-Engine::Engine(sf::Vector2i res) : currentLevel{"resources/level1.txt"}, heldPiece(nullptr) {
+Engine::Engine(sf::Vector2i res)  {
+    Textures::loadTextures();
+    currentLevel = Level{"resources/level1.txt"};
+    heldPiece = nullptr;
     videoMode.width = res.x;
     videoMode.height = res.y;
-    window.create(videoMode, "Temple Stones v0.6", sf::Style::Close);
+    window.create(videoMode, "Temple Stones v1.1.0", sf::Style::Close);
 }
 
 void Engine::run() {
+    currentPieceInventory = currentLevel.getPieceInventory();
+    currentBoard = std::make_shared<Board>(*currentLevel.getCurrentBoard());
     while(window.isOpen()) {
         input();
         draw();
@@ -42,9 +47,9 @@ void Engine::input() {
 
 void Engine::draw() {
     window.clear(sf::Color::Black);
-    window.draw(currentLevel.getCurrentBoard());
-    for (auto &piece : currentLevel.getPieceInventory()) {
-        window.draw(piece);
+    window.draw(*currentBoard);
+    for (auto &piece : currentPieceInventory) {
+        window.draw(*piece);
     }
     window.display();
 }
@@ -53,28 +58,45 @@ void Engine::leftClick() {
     //If we don't hold a piece
     if (heldPiece == nullptr) {
         //Grab the Piece
-        auto &inv = currentLevel.getPieceInventory();
-        for (auto ptr = inv.rbegin(); ptr < inv.rend(); ++ptr) {
-            if (ptr->isClicked(sf::Mouse::getPosition(window))) {
-                heldPiece = &(*ptr);
+        auto &inv = currentPieceInventory;
+        for (auto it = inv.rbegin(); it < inv.rend(); ++it) {
+            if ((*it)->isClicked(sf::Mouse::getPosition(window))) {
+                heldPiece = *it;
                 heldPiece->updatePosition(sf::Mouse::getPosition(window));
+
+                // move the held piece to the very front
+                auto x = std::move(*it);
+                currentPieceInventory.erase(std::next(it).base()); // convert reverse iterator to iterator, black magic
+                currentPieceInventory.emplace_back(std::move(x));
+
                 break;
             }
         }
         //Remove the Piece if it was on the board
         if (heldPiece != nullptr) {
             auto charToRemove = heldPiece->getId();
-            currentLevel.getCurrentBoard().removePiece(charToRemove);
+            currentBoard->removePiece(charToRemove);
         }
     }
     else {
         //Try to place it
         sf::Vector2i mousePos = sf::Mouse::getPosition(window);
-        if (currentLevel.getCurrentBoard().placePiece(*heldPiece, mousePos)) {
+        if (currentBoard->placePiece(*heldPiece, mousePos)) {
+            // move the placed piece to the very back
+            auto it = std::find(currentPieceInventory.begin(), currentPieceInventory.end(), heldPiece);
+            auto x = std::move(*it);
+            currentPieceInventory.erase(it);
+            currentPieceInventory.insert(currentPieceInventory.begin(), std::move(x));
+
             std::cout << "wow piece has been placed";
         }
         heldPiece = nullptr;
     }
+}
+
+Engine &Engine::get_engine(sf::Vector2i res) {
+    static Engine engine{res};
+    return engine;
 }
 
 Engine::~Engine() = default;
