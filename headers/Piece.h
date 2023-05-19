@@ -6,34 +6,25 @@
 #define OOP_PIECE_H
 
 #include <SFML/Graphics.hpp>
+#include "Grid.h"
 #include <iostream>
 #include <array>
 #include <string>
 
 const int CELL_SIZE = 50;
-const int MAX_PIECE_LENGTH = 5;
+const int PIECE_LENGTH = 5;
 const int PIECE_X = 20;
 const int PIECE_Y = 20;
 const int AREA_TO_SPAWN = 300;
 
-class Piece : public sf::Drawable {
+class Piece : public Grid {
 
 private:
-    std::array<std::array<char, MAX_PIECE_LENGTH>, MAX_PIECE_LENGTH> pieceLayout;
-    sf::Vector2i position;
-    sf::Color fillColour, outlineColour;
-    char id;
-    bool canRotate;
-    bool canFlip;
+    bool canRotate, canFlip;
 
 public:
     // constructor
-    Piece();
-    Piece(const std::vector<std::string> &, char &, bool &, bool &);
-
-    [[nodiscard]] char getId() const;
-
-    [[nodiscard]] const std::array<std::array<char, MAX_PIECE_LENGTH>, MAX_PIECE_LENGTH> &getPieceLayout() const;
+    Piece(const std::vector<std::string> &, int, char, const sf::Vector2i &, bool, bool);
 
     // setter
     void updatePosition (const sf::Vector2i &);
@@ -41,11 +32,9 @@ public:
     void rotatePiece();
 
     friend std::ostream& operator<< (std::ostream &, const Piece &);
-    void draw(sf::RenderTarget &, sf::RenderStates) const override;
 
-    [[nodiscard]] bool isClicked(sf::Vector2i) const;
+    [[nodiscard]] bool isClicked(const sf::Vector2i &) const;
 
-    ~Piece() override;
 };
 
 

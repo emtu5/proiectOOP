@@ -4,50 +4,19 @@
 
 #include "../headers/Board.h"
 
-void Board::draw(sf::RenderTarget &target, sf::RenderStates) const {
-    sf::Vector2f cellPos;
-    sf::RectangleShape rectangle{sf::Vector2f(BOARD_CELL_SIZE - 2, BOARD_CELL_SIZE - 2)};
-    rectangle.setFillColor(sf::Color (150, 150, 150));
-    rectangle.setOutlineColor(sf::Color (70, 70, 70));
-    rectangle.setOutlineThickness(1);
-    cellPos.y = position.y;
-    for (int i = 0; i < MAX_BOARD_LENGTH; i++) {
-        cellPos.x = position.x;
-        for (int j = 0; j < MAX_BOARD_LENGTH; j++) {
-            rectangle.setPosition(cellPos);
-            if (boardLayout[i][j] == '#') {
-                target.draw(rectangle);
-            }
-            cellPos.x += BOARD_CELL_SIZE;
-        }
-        cellPos.y += BOARD_CELL_SIZE;
-    }
-}
 
-Board::Board() : boardLayout{{{0}}}, position{BOARD_X, BOARD_Y} {}
-
-Board::Board(const std::vector<std::string> &layout) : boardLayout{{{0}}}, position{BOARD_X, BOARD_Y} {
-    for (int i = 0; i < MAX_BOARD_LENGTH; i++) {
-        for (int j = 0; j < MAX_BOARD_LENGTH; j++) {
-            boardLayout[i][j] = layout[i][j];
-        }
-    }
-}
 
 //
-sf::Vector2i Board::isClicked(const sf::Vector2i &clickPosition) const {
-    sf::Vector2i relativePosition = clickPosition - position;
-    return {relativePosition.y / BOARD_CELL_SIZE, relativePosition.x / BOARD_CELL_SIZE};
-}
+
 
 bool Board::placePiece(Piece &piece, const sf::Vector2i &clickPosition) {
     //Check if piece fits
     //NOTE: Piece is centered according to the cursor
 
-    sf::Vector2i boardClick = isClicked(clickPosition);
-    auto layout = piece.getPieceLayout();
-    for (int i = 0; i < MAX_PIECE_LENGTH; i++) {
-        for (int j = 0; j < MAX_PIECE_LENGTH; j++) {
+    sf::Vector2i boardClick = whereClicked(clickPosition);
+    auto layout = piece.getGridLayout();
+    for (int i = 0; i < PIECE_LENGTH; i++) {
+        for (int j = 0; j < PIECE_LENGTH; j++) {
 
             //Is that part of the piece filled?
             if (layout[i][j] == '.') {
@@ -56,16 +25,16 @@ bool Board::placePiece(Piece &piece, const sf::Vector2i &clickPosition) {
 
             //Is that part of the piece out of the board's bounds?
             //absoluteXY - the actual coords where a piece section would go
-            int absoluteX = boardClick.x + i - MAX_PIECE_LENGTH / 2,
-                absoluteY = boardClick.y + j - MAX_PIECE_LENGTH / 2;
+            int absoluteX = boardClick.x + i - PIECE_LENGTH / 2,
+                absoluteY = boardClick.y + j - PIECE_LENGTH / 2;
 
-            if (absoluteX < 0 || absoluteX >= MAX_BOARD_LENGTH ||
-                absoluteY < 0 || absoluteY >= MAX_BOARD_LENGTH) {
+            if (absoluteX < 0 || absoluteX >= BOARD_LENGTH ||
+                absoluteY < 0 || absoluteY >= BOARD_LENGTH) {
                 return false;
             }
 
             //Is that part of the board occupied?
-            if (boardLayout[absoluteX][absoluteY] != '#') {
+            if (gridLayout[absoluteX][absoluteY] != '#') {
                 return false;
             }
         }
@@ -73,14 +42,14 @@ bool Board::placePiece(Piece &piece, const sf::Vector2i &clickPosition) {
 
     //Piece does fit, let's place it
     auto pieceID = piece.getId();
-    for (int i = 0; i < MAX_PIECE_LENGTH; i++) {
-        for (int j = 0; j < MAX_PIECE_LENGTH; j++) {
+    for (int i = 0; i < PIECE_LENGTH; i++) {
+        for (int j = 0; j < PIECE_LENGTH; j++) {
             if (layout[i][j] == '.') {
                 continue;
             }
-            int absoluteX = boardClick.x + i - MAX_PIECE_LENGTH / 2,
-                absoluteY = boardClick.y + j - MAX_PIECE_LENGTH / 2;
-            boardLayout[absoluteX][absoluteY] = pieceID;
+            int absoluteX = boardClick.x + i - PIECE_LENGTH / 2,
+                absoluteY = boardClick.y + j - PIECE_LENGTH / 2;
+            gridLayout[absoluteX][absoluteY] = pieceID;
         }
     }
 
@@ -93,10 +62,10 @@ bool Board::placePiece(Piece &piece, const sf::Vector2i &clickPosition) {
 }
 
 void Board::removePiece(const char &id) {
-    for (int i = 0; i < MAX_BOARD_LENGTH; i++) {
-        for (int j = 0; j < MAX_BOARD_LENGTH; j++) {
-            if (boardLayout[i][j] == id) {
-                boardLayout[i][j] = '#';
+    for (int i = 0; i < BOARD_LENGTH; i++) {
+        for (int j = 0; j < BOARD_LENGTH; j++) {
+            if (gridLayout[i][j] == id) {
+                gridLayout[i][j] = '#';
             }
         }
     }
@@ -104,21 +73,23 @@ void Board::removePiece(const char &id) {
 }
 
 std::ostream &operator<<(std::ostream &os, const Board &b) {
-    for (int i = 0; i < MAX_BOARD_LENGTH; i++) {
-        for (int j = 0; j < MAX_BOARD_LENGTH; j++) {
-            os << b.boardLayout[i][j];
+    for (int i = 0; i < BOARD_LENGTH; i++) {
+        for (int j = 0; j < BOARD_LENGTH; j++) {
+            os << b.gridLayout[i][j];
         }
         os << '\n';
     }
     return os;
 }
 
-[[maybe_unused]] Board::Board(const Board &other) : boardLayout{other.boardLayout}, position{other.position} {}
+//[[maybe_unused]] Board::Board(const Board &other) : gridLayout{other.gridLayout}, position{other.position} {}
 
-Board &Board::operator=(const Board &other) {
-    boardLayout = other.boardLayout;
-    position = other.position;
-    return *this;
-}
+//Board &Board::operator=(const Board &other) {
+//    gridLayout = other.gridLayout;
+//    position = other.position;
+//    return *this;
+//}
 
-Board::~Board() = default;
+Board::Board(const std::vector<std::string> &boardLayout, int size, char id, const sf::Vector2i &pos) : Grid(boardLayout, size, id, pos) {}
+
+//Board::~Board() = default;

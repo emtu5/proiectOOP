@@ -11,15 +11,17 @@
 
 class Level {
 private:
-    std::vector<Piece> pieceInventory;
-    Board currentBoard;
+    std::vector<std::shared_ptr<Piece>> pieceInventory;
+    std::shared_ptr<Board> currentBoard;
 public:
+    Level();
+
     //maybe_unused clang-tidy thing here, most likely a false positive
     [[maybe_unused]] explicit Level(const std::string&);
 
-    std::vector<Piece> &getPieceInventory() ;
+    [[nodiscard]] const std::vector<std::shared_ptr<Piece>> &getPieceInventory() const;
 
-    Board &getCurrentBoard();
+    [[nodiscard]] const std::shared_ptr<Board> &getCurrentBoard() const;
 
     ~Level();
 };
