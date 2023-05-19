@@ -10,7 +10,6 @@
 #include "Textures.h"
 
 const char emptyTile = '.';
-const char usedTile = '#';
 const int TILE_SIZE = 50;
 
 class Grid : public sf::Drawable {
