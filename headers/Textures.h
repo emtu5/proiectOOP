@@ -6,6 +6,7 @@
 #define OOP_TEXTURES_H
 
 #include "SFML/Graphics.hpp"
+#include <unordered_map>
 #include <memory>
 
 class Textures {
