@@ -1,4 +1,4 @@
-# Temple Stones v1.1.0
+# Temple Stones v1.1.1
 
 - A game where you place pieces on a board in order to fulfill certain winning conditions (such as filling up the board completely, all but one tile etc.).
 
@@ -6,7 +6,8 @@
 ![](https://i.imgur.com/M5zQM2d.png)
 
 - Right now, the game looks like this:
-![](https://i.imgur.com/5fd3M14.png)
+![](https://i.imgur.com/KEwnpfR.png)
+
 ## How to play
 
 - Place pieces on the board with your mouse.
