@@ -23,6 +23,7 @@
 
 ## To be implemented/done
 
+- Fix piece copying
 - A Button class (UI, not only for the menu, but also in-game, as the pieces will be accesed by the buttons on the side, as seen in the mock-up)
 - Texture Loader for the pieces (a good one, right now it's just a class with a static map, will probably template)
 - (Might scrap) A level select screen (Menu class, and so much more)
@@ -62,7 +63,7 @@
   - [x] apelarea constructorului din clasa de bază din constructori din derivate
   - [x] smart pointers
   - [ ] `dynamic_cast`
-- [x] suprascris cc/op= pentru copieri/atribuiri corecte, copy and swap
+- [ ] suprascris cc/op= pentru copieri/atribuiri corecte, copy and swap
 - [ ] excepții
   - [ ] ierarhie proprie cu baza `std::exception` sau derivată din `std::exception`; minim 2 clase pentru erori specifice
   - [ ] utilizare cu sens: de exemplu, `throw` în constructor, `try`/`catch` în `main`
