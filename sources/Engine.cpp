@@ -4,9 +4,20 @@
 
 #include "../headers/Engine.h"
 
+#include <fstream>
+
 Engine::Engine(sf::Vector2i res)  {
     Textures::loadTextures();
-    currentLevel = Level{"resources/level1.txt"};
+
+    std::ifstream fin("resources/totallevels.txt");
+    fin >> totalLevelCount;
+    LevelList::loadLevels(totalLevelCount);
+
+    fin.close();
+    fin.open("resources/latestlevel.txt");
+    fin >> currentLevelNumber;
+
+    currentLevel = Level();
     heldPiece = nullptr;
     videoMode.width = res.x;
     videoMode.height = res.y;
@@ -14,8 +25,7 @@ Engine::Engine(sf::Vector2i res)  {
 }
 
 void Engine::run() {
-    currentPieceInventory = currentLevel.getPieceInventory();
-    currentBoard = std::make_shared<Board>(*currentLevel.getCurrentBoard());
+    loadLevel(currentLevelNumber);
     while(window.isOpen()) {
         input();
         draw();
@@ -88,6 +98,12 @@ void Engine::leftClick() {
             currentPieceInventory.erase(it);
             currentPieceInventory.insert(currentPieceInventory.begin(), std::move(x));
 
+            if (currentBoard->checkWinCondition()) {
+                currentLevelNumber = currentLevelNumber < totalLevelCount ? currentLevelNumber + 1 : 1;
+                std::ofstream fout("resources/latestlevel.txt");
+                fout << currentLevelNumber;
+                loadLevel(currentLevelNumber);
+            }
             std::cout << "wow piece has been placed";
         }
         heldPiece = nullptr;
@@ -97,6 +113,12 @@ void Engine::leftClick() {
 Engine &Engine::get_engine(sf::Vector2i res) {
     static Engine engine{res};
     return engine;
+}
+
+void Engine::loadLevel(int levelNum) {
+    currentLevel = LevelList::getLevel(levelNum);
+    currentPieceInventory = currentLevel.getPieceInventory();
+    currentBoard = currentLevel.getCurrentBoard()->clone();
 }
 
 Engine::~Engine() = default;

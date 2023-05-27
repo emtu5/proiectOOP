@@ -15,12 +15,13 @@
 class Engine {
 private:
     Level currentLevel;
+    int currentLevelNumber;
     std::shared_ptr<Board> currentBoard;
     std::vector<std::shared_ptr<Piece>> currentPieceInventory;
     std::shared_ptr<Piece> heldPiece;
     sf::RenderWindow window;
     sf::VideoMode videoMode;
-
+    int totalLevelCount;
     // Singleton
     explicit Engine(sf::Vector2i res);
 
@@ -33,6 +34,7 @@ public:
     void input();
     void draw();
     void leftClick();
+    void loadLevel(int);
     ~Engine();
 };
 
