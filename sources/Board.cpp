@@ -4,10 +4,7 @@
 
 #include "../headers/Board.h"
 
-
-
-//
-
+Board::Board(const std::vector<std::string> &boardLayout, int size, char id, const sf::Vector2i &pos) : Grid(boardLayout, size, id, pos) {}
 
 bool Board::placePiece(Piece &piece, const sf::Vector2i &clickPosition) {
     //Check if piece fits
@@ -54,7 +51,7 @@ bool Board::placePiece(Piece &piece, const sf::Vector2i &clickPosition) {
     }
 
     //Snap piece to the board
-    std::cout << boardClick.x << boardClick.y;
+    std::cout << "Placed at: "<< boardClick.x << " " << boardClick.y << "\n";
     piece.updatePosition(sf::Vector2i{BOARD_X + boardClick.y * BOARD_CELL_SIZE + BOARD_CELL_SIZE / 2,
                                       BOARD_Y + boardClick.x * BOARD_CELL_SIZE + BOARD_CELL_SIZE / 2});
     std::cout << *this;
@@ -82,14 +79,14 @@ std::ostream &operator<<(std::ostream &os, const Board &b) {
     return os;
 }
 
-//[[maybe_unused]] Board::Board(const Board &other) : gridLayout{other.gridLayout}, position{other.position} {}
 
-//Board &Board::operator=(const Board &other) {
-//    gridLayout = other.gridLayout;
-//    position = other.position;
-//    return *this;
+//bool Board::checkWinCondition() {
+//    for (auto &row : gridLayout) {
+//        for (auto &tile: row) {
+//            if (tile == unusedTile) {
+//                return false;
+//            }
+//        }
+//    }
+//    return true;
 //}
-
-Board::Board(const std::vector<std::string> &boardLayout, int size, char id, const sf::Vector2i &pos) : Grid(boardLayout, size, id, pos) {}
-
-//Board::~Board() = default;
