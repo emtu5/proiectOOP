@@ -5,7 +5,7 @@
 #include "../headers/No2x2Board.h"
 #include <unordered_set>
 
-No2x2Board::No2x2Board(const std::vector<std::string> &boardLayout, int size, char id, const sf::Vector2i &pos, int no_pieces) : Board(boardLayout, size, id, pos), pieceRequirement(no_pieces) {}
+No2x2Board::No2x2Board(const std::vector<std::string> &boardLayout, int size, char id, const sf::Vector2i &pos, unsigned int no_pieces) : Board(boardLayout, size, id, pos), pieceRequirement(no_pieces) {}
 
 std::shared_ptr<Board> No2x2Board::clone() const {
     return std::make_shared<No2x2Board>(*this);

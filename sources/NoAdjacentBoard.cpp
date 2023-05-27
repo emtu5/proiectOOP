@@ -5,7 +5,7 @@
 #include "../headers/NoAdjacentBoard.h"
 #include <unordered_set>
 
-NoAdjacentBoard::NoAdjacentBoard(const std::vector<std::string> &boardLayout, int size, char id, const sf::Vector2i &pos, int no_pieces) : Board(boardLayout, size, id, pos), pieceRequirement(no_pieces){}
+NoAdjacentBoard::NoAdjacentBoard(const std::vector<std::string> &boardLayout, int size, char id, const sf::Vector2i &pos, unsigned int no_pieces) : Board(boardLayout, size, id, pos), pieceRequirement(no_pieces){}
 
 std::shared_ptr<Board> NoAdjacentBoard::clone() const {
     return std::make_shared<NoAdjacentBoard>(*this);

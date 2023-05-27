@@ -9,9 +9,9 @@
 
 class NoAdjacentBoard : public Board{
 private:
-    int pieceRequirement;
+    unsigned int pieceRequirement;
 public:
-    NoAdjacentBoard(const std::vector<std::string> &, int, char, const sf::Vector2i &, int);
+    NoAdjacentBoard(const std::vector<std::string> &, int, char, const sf::Vector2i &, unsigned int);
     bool checkWinCondition() override;
     [[nodiscard]] std::shared_ptr<Board> clone() const override;
 };
