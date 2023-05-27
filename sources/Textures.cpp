@@ -19,9 +19,9 @@ void Textures::loadTextures() {
     tileTextures['k'].loadFromFile("resources/tiles/tile11.png");
     tileTextures['l'].loadFromFile("resources/tiles/tile12.png");
     tileTextures['w'].loadFromFile("resources/tiles/board1.png");
-//    tileTextures['x'].loadFromFile("resources/tiles/board2.png");
-//    tileTextures['y'].loadFromFile("resources/tiles/board3.png");
-//    tileTextures['z'].loadFromFile("resources/tiles/board4.png");
+    tileTextures['x'].loadFromFile("resources/tiles/board2.png");
+    tileTextures['y'].loadFromFile("resources/tiles/board3.png");
+    tileTextures['z'].loadFromFile("resources/tiles/board4.png");
 }
 
 std::shared_ptr<sf::Texture> Textures::getTileTexture(char id) {
