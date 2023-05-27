@@ -23,15 +23,11 @@
 
 ## To be implemented/done
 
-- A basic level advancement system
 - A Button class (UI, not only for the menu, but also in-game, as the pieces will be accesed by the buttons on the side, as seen in the mock-up)
 - Texture Loader for the pieces (a good one, right now it's just a class with a static map, will probably template)
-- A level select screen (Menu class, and so much more)
-- Save files
-- Implement win conditions for different board types
+- (Might scrap) A level select screen (Menu class, and so much more)
 - Exception handling (missing level files, assets)
 - Make a config file for window size
-- Basic sounds
 
 ### Tema 0
 
