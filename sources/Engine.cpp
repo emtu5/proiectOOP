@@ -21,7 +21,7 @@ Engine::Engine(sf::Vector2i res)  {
     heldPiece = nullptr;
     videoMode.width = res.x;
     videoMode.height = res.y;
-    window.create(videoMode, "Temple Stones v1.1.0", sf::Style::Close);
+    window.create(videoMode, "Temple Stones v1.5.0", sf::Style::Close);
 }
 
 void Engine::run() {
