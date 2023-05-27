@@ -1,18 +1,18 @@
-# Temple Stones v1.5.0
+# Temple Stones v1.5.1
 
 - A game where you place pieces on a board in order to fulfill certain winning conditions (such as filling up the board completely, all but one tile etc.).
 
 - A very rough mock-up of what the final game will look like (none of the assets are final):
-![](https://i.imgur.com/M5zQM2d.png)
+![](mockup.png)
 
 - Right now, the game looks like this:
-![](https://i.imgur.com/KEwnpfR.png)
+![](v1.5.1.png)
 
 ## How to play
 
 - Place pieces on the board with your mouse.
 - Left Click: Picks up a piece. Click again to release it. If the piece has space to fit on the board, it will be placed on it.
-- Right CLick: Rotates the held piece clockwise.
+- Right Click: Rotates the held piece clockwise.
 - Middle Click: Flips the piece.
 
 ### Current state of the game
@@ -23,10 +23,9 @@
 
 ## To be implemented/done
 
-- Fix piece copying
 - A Button class (UI, not only for the menu, but also in-game, as the pieces will be accesed by the buttons on the side, as seen in the mock-up)
 - Texture Loader for the pieces (a good one, right now it's just a class with a static map, will probably template)
-- (Might scrap) A level select screen (Menu class, and so much more)
+- (scrapped for now) A level select screen (Menu class, and so much more)
 - Exception handling (missing level files, assets)
 - Make a config file for window size
 
