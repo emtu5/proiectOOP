@@ -117,8 +117,10 @@ Engine &Engine::get_engine(sf::Vector2i res) {
 
 void Engine::loadLevel(int levelNum) {
     currentLevel = LevelList::getLevel(levelNum);
-    // TODO: fix this, since it obviously doesn't deep-copy the pieces
-    currentPieceInventory = currentLevel.getPieceInventory();
+    currentPieceInventory.clear();
+    for (auto &p : currentLevel.getPieceInventory()) {
+        currentPieceInventory.emplace_back(std::make_shared<Piece>(p));
+    }
     currentBoard = currentLevel.getCurrentBoard()->clone();
 }
 

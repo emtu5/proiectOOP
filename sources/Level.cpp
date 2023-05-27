@@ -34,12 +34,12 @@ Level::Level() = default;
             fin >> currentLine;
             stringPiece.emplace_back(currentLine);
         }
-        pieceInventory.emplace_back(std::make_shared<Piece>(stringPiece, TILE_SIZE, currentId, sf::Vector2i{PIECE_X, PIECE_Y}, rotate, flip));
+        pieceInventory.emplace_back(stringPiece, TILE_SIZE, currentId, sf::Vector2i{PIECE_X, PIECE_Y}, rotate, flip);
     }
     currentBoard = factory.createBoard(boardType, stringBoard, TILE_SIZE, sf::Vector2i{BOARD_X, BOARD_Y}, pieceInventory.size());
 }
 
-const std::vector<std::shared_ptr<Piece>> &Level::getPieceInventory() const {
+const std::vector<Piece> &Level::getPieceInventory() const {
     return pieceInventory;
 }
 
