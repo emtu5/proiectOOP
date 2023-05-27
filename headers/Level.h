@@ -8,6 +8,7 @@
 #include <vector>
 #include "Piece.h"
 #include "Board.h"
+#include <unordered_map>
 
 class Level {
 private:
@@ -26,5 +27,11 @@ public:
     ~Level();
 };
 
-
+class LevelList {
+private:
+    static std::unordered_map<int, Level> levelList;
+public:
+    static void loadLevels(int);
+    static Level& getLevel(int);
+};
 #endif //OOP_LEVEL_H
