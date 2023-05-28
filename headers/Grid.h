@@ -24,6 +24,7 @@ protected:
     Grid(const std::vector<std::string> &, int, char, const sf::Vector2i &);
 
 public:
+    sf::Vector2i &getPostion();
     [[nodiscard]] const std::vector<std::string> &getGridLayout() const;
     void draw(sf::RenderTarget &, sf::RenderStates) const override;
     [[nodiscard]] sf::Vector2i whereClicked(const sf::Vector2i &) const;

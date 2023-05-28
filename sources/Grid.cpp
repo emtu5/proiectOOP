@@ -41,3 +41,7 @@ sf::Vector2i Grid::whereClicked(const sf::Vector2i &clickPosition) const {
 char Grid::getId() const {
     return tileId;
 }
+
+sf::Vector2i &Grid::getPostion() {
+    return position;
+}
