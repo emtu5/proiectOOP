@@ -9,6 +9,8 @@
 #include "Piece.h"
 #include "Board.h"
 #include <unordered_map>
+#include "BoardFactory.h"
+#include "Exceptions.h"
 
 class Level {
 private:

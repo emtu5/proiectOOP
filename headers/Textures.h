@@ -6,8 +6,10 @@
 #define OOP_TEXTURES_H
 
 #include "SFML/Graphics.hpp"
+#include "Exceptions.h"
 #include <unordered_map>
 #include <memory>
+#include <iostream>
 
 class Textures {
 private:

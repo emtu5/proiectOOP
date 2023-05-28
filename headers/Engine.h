@@ -6,24 +6,28 @@
 #define OOP_ENGINE_H
 
 #include <SFML/Graphics.hpp>
+#include <iostream>
+#include <memory>
 #include "Piece.h"
 #include "Board.h"
 #include "Level.h"
-#include <iostream>
-#include <memory>
 #include "Utils.h"
+#include "Exceptions.h"
+
+const int STARTING_LEVEL = 1;
+const int TOTAL_LEVELS = 30;
 
 class Engine {
 private:
-    Level currentLevel;
-    int currentLevelNumber;
+    Level currentLevel{};
+    std::shared_ptr<Piece> heldPiece = nullptr;
+    bool hasFinishedLevel = false;
     std::shared_ptr<Board> currentBoard;
     std::vector<std::shared_ptr<Piece>> currentPieceInventory;
-    std::shared_ptr<Piece> heldPiece;
     sf::RenderWindow window;
     sf::VideoMode videoMode;
-    int totalLevelCount;
-    bool hasFinishedLevel;
+    short currentLevelNumber;
+    short totalLevelCount;
     sf::Font gameFont;
     // Singleton
     explicit Engine(sf::Vector2i res);

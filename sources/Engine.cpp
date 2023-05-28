@@ -6,24 +6,44 @@
 
 #include <fstream>
 
-Engine::Engine(sf::Vector2i res)  {
+Engine::Engine(sf::Vector2i res) : currentLevelNumber(STARTING_LEVEL), totalLevelCount(TOTAL_LEVELS) {
     Textures::loadTextures();
 
-    std::ifstream fin("resources/totallevels.txt");
-    fin >> totalLevelCount;
+    try {
+        std::ifstream fin("resources/totallevels.txt");
+        if (!fin) {
+            throw FileNotFound("resources/totallevels.txt");
+        }
+        fin >> totalLevelCount;
+    } catch (FileNotFound &err) {
+        std::cout << err.what() << '\n';
+        std::ofstream fout("resources/totallevels.txt");
+        fout << totalLevelCount;
+    }
+
+    try {
+        std::ifstream fin("resources/latestlevel.txt");
+        if (!fin) {
+            throw FileNotFound("resources/latestlevel.txt");
+        }
+        fin >> currentLevelNumber;
+    } catch (FileNotFound &err) {
+        std::cout << err.what() << '\n';
+        std::ofstream fout("resources/latestlevel.txt");
+        fout << currentLevelNumber;
+    }
+
+    try {
+        if (!gameFont.loadFromFile("resources/trajanus.ttf")) {
+            throw FileNotFound("resources/trajanus.ttf");
+        }
+    } catch (FileNotFound &err) {
+        std::cout << err.what() << '\n';
+    }
+
     LevelList::loadLevels(totalLevelCount);
-
-    fin.close();
-    fin.open("resources/latestlevel.txt");
-    fin >> currentLevelNumber;
-
-    currentLevel = Level();
-    heldPiece = nullptr;
     videoMode.width = res.x;
     videoMode.height = res.y;
-
-    hasFinishedLevel = false;
-    gameFont.loadFromFile("resources/trajanus.ttf");
     window.create(videoMode, "Temple Stones v1.7.0", sf::Style::Close);
 }
 
@@ -137,11 +157,17 @@ void Engine::loadLevel(int levelNum) {
 
 void Engine::goToNextLevel() {
     hasFinishedLevel = false;
-    currentLevelNumber = currentLevelNumber < totalLevelCount ? currentLevelNumber + 1 : 1;
-    std::ofstream fout("resources/latestlevel.txt");
-    fout << currentLevelNumber;
-    loadLevel(currentLevelNumber);
-
+    while (true) {
+        try {
+            currentLevelNumber = currentLevelNumber < totalLevelCount ? currentLevelNumber + 1 : 1;
+            std::ofstream fout("resources/latestlevel.txt");
+            fout << currentLevelNumber;
+            loadLevel(currentLevelNumber);
+            break;
+        } catch (BadLevelID &err) {
+            std::cout << err.what() << '\n';
+        }
+    }
 }
 
 Engine::~Engine() = default;
