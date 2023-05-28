@@ -6,6 +6,12 @@
 
 FilledBoard::FilledBoard(const std::vector<std::string> &boardLayout, int size, char id, const sf::Vector2i &pos) : Board(boardLayout, size, id, pos){}
 
+std::shared_ptr<Board> FilledBoard::clone() const {
+    return std::make_shared<FilledBoard>(*this);
+}
+
+// Win Condition: Place some pieces to cover the entire board
+
 bool FilledBoard::checkWinCondition() {
     for (auto &row : gridLayout) {
         for (auto &tile: row) {
@@ -15,7 +21,4 @@ bool FilledBoard::checkWinCondition() {
         }
     }
     return true;
-}
-std::shared_ptr<Board> FilledBoard::clone() const {
-    return std::make_shared<FilledBoard>(*this);
 }

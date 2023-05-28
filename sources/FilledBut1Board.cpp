@@ -10,6 +10,8 @@ std::shared_ptr<Board> FilledBut1Board::clone() const {
     return std::make_shared<FilledBut1Board>(*this);
 }
 
+// Win Condition: Place some pieces to cover all tiles except 1
+
 bool FilledBut1Board::checkWinCondition() {
     int unusedAmount = 0;
     for (auto &row : gridLayout) {

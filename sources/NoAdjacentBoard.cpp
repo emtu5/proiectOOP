@@ -11,6 +11,8 @@ std::shared_ptr<Board> NoAdjacentBoard::clone() const {
     return std::make_shared<NoAdjacentBoard>(*this);
 }
 
+// Win Condition: Place all pieces on the board without any of them touching
+
 bool NoAdjacentBoard::checkWinCondition() {
     std::unordered_set<char> used_pieces;
     for (int i = 0; i < BOARD_LENGTH; i++) {

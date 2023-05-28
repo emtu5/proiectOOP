@@ -11,6 +11,8 @@ std::shared_ptr<Board> No2x2Board::clone() const {
     return std::make_shared<No2x2Board>(*this);
 }
 
+// Win Condition: Place all pieces without covering any 2x2 region on the board
+
 bool No2x2Board::checkWinCondition() {
     std::unordered_set<char> used_pieces;
     for (int i = 0; i < BOARD_LENGTH; i++) {
