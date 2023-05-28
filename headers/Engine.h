@@ -11,6 +11,7 @@
 #include "Level.h"
 #include <iostream>
 #include <memory>
+#include "Utils.h"
 
 class Engine {
 private:
@@ -22,6 +23,8 @@ private:
     sf::RenderWindow window;
     sf::VideoMode videoMode;
     int totalLevelCount;
+    bool hasFinishedLevel;
+    sf::Font gameFont;
     // Singleton
     explicit Engine(sf::Vector2i res);
 
@@ -35,6 +38,7 @@ public:
     void draw();
     void leftClick();
     void loadLevel(int);
+    void goToNextLevel();
     ~Engine();
 };
 

@@ -21,7 +21,10 @@ Engine::Engine(sf::Vector2i res)  {
     heldPiece = nullptr;
     videoMode.width = res.x;
     videoMode.height = res.y;
-    window.create(videoMode, "Temple Stones v1.5.1", sf::Style::Close);
+
+    hasFinishedLevel = false;
+    gameFont.loadFromFile("resources/trajanus.ttf");
+    window.create(videoMode, "Temple Stones v1.7.0", sf::Style::Close);
 }
 
 void Engine::run() {
@@ -40,7 +43,13 @@ void Engine::input() {
         }
         if (ev.type == sf::Event::MouseButtonReleased) {
             if (ev.mouseButton.button == sf::Mouse::Left) {
-                leftClick();
+                if (hasFinishedLevel) {
+                    hasFinishedLevel = false;
+                    goToNextLevel();
+                }
+                else {
+                    leftClick();
+                }
             }
             if(ev.mouseButton.button == sf::Mouse::Right && heldPiece != nullptr) {
                 heldPiece->rotatePiece();
@@ -60,6 +69,12 @@ void Engine::draw() {
     window.draw(*currentBoard);
     for (auto &piece : currentPieceInventory) {
         window.draw(*piece);
+    }
+
+    Utils::drawLevelMessage(window, gameFont, currentLevelNumber, currentBoard);
+
+    if (hasFinishedLevel) {
+        Utils::drawLevelComplete(window, gameFont);
     }
     window.display();
 }
@@ -99,12 +114,8 @@ void Engine::leftClick() {
             currentPieceInventory.insert(currentPieceInventory.begin(), std::move(x));
 
             if (currentBoard->checkWinCondition()) {
-                currentLevelNumber = currentLevelNumber < totalLevelCount ? currentLevelNumber + 1 : 1;
-                std::ofstream fout("resources/latestlevel.txt");
-                fout << currentLevelNumber;
-                loadLevel(currentLevelNumber);
+                hasFinishedLevel = true;
             }
-            std::cout << "wow piece has been placed";
         }
         heldPiece = nullptr;
     }
@@ -122,6 +133,15 @@ void Engine::loadLevel(int levelNum) {
         currentPieceInventory.emplace_back(std::make_shared<Piece>(p));
     }
     currentBoard = currentLevel.getCurrentBoard()->clone();
+}
+
+void Engine::goToNextLevel() {
+    hasFinishedLevel = false;
+    currentLevelNumber = currentLevelNumber < totalLevelCount ? currentLevelNumber + 1 : 1;
+    std::ofstream fout("resources/latestlevel.txt");
+    fout << currentLevelNumber;
+    loadLevel(currentLevelNumber);
+
 }
 
 Engine::~Engine() = default;
