@@ -21,8 +21,6 @@ const char unusedTile = '#';
 class Board : public Grid {
 
 public:
-    //    static std::unordered_map<std::string, std::function<std::shared_ptr<Board>()>> generateBoard;
-
     // constructor
     Board(const std::vector<std::string> &, int, char, const sf::Vector2i &);
 
@@ -30,8 +28,6 @@ public:
     bool placePiece(Piece &, const sf::Vector2i &);
     void removePiece(const char &);
 
-//    [[maybe_unused]] Board(const Board &);
-//    Board& operator= (const Board &);
     friend std::ostream& operator<< (std::ostream &, const Board &);
     virtual bool checkWinCondition() = 0;
     [[nodiscard]] virtual std::shared_ptr<Board> clone() const = 0;
