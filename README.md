@@ -84,5 +84,5 @@
 
 ## Resurse
 
-- [SFML](https://github.com/SFML/SFML/tree/aa82ea132b9296a31922772027ad5d14c1fa381b) (Zlib), [Documentație] (https://www.sfml-dev.org/documentation/2.5.1/)
+- [SFML](https://github.com/SFML/SFML/tree/aa82ea132b9296a31922772027ad5d14c1fa381b) (Zlib), [Documentație](https://www.sfml-dev.org/documentation/2.5.1/), [Forum](https://en.sfml-dev.org/forums/), [LearnSFML](https://learnsfml.com/)
 - [Tutorial Snake](https://www.youtube.com/playlist?list=PLbPaYYCufiXzbKTwPpYpgkUplgsCscEm6) (ca să mă obișnuiesc cu SFML)
