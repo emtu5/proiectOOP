@@ -1,4 +1,4 @@
-# Temple Stones v1.5.1
+# Temple Stones v1.7.0
 
 - A game where you place pieces on a board in order to fulfill certain winning conditions (such as filling up the board completely, all but one tile etc.).
 
@@ -6,7 +6,7 @@
 ![](mockup.png)
 
 - Right now, the game looks like this:
-![](v1.5.1.png)
+![](v1.7.0.png)
 
 ## How to play
 
@@ -17,17 +17,18 @@
 
 ### Current state of the game
 
-- Basic piece placement logic has been implemented, as well as a super-basic level file parser.
-- Currently there is only one level that's immediately loaded at startup (and only that, I haven't coded any logic for advancing to other levels). In the future there will not only be multiple levels, but also a dedicated level select screen.
-- You can toy around with the pieces on the predefined board.
+- Basic piece placement logic has been implemented, as well as a super-basic level file parser and level advancement system.
+- Currently there are 12 levels, most of them unpolished.
+- Different board types have been implemented.
 
 ## To be implemented/done
 
+- Exception handling (missing level files, assets)
+- Add restriction mechanic (in the mockup, the symbol on the board indicates that piece must be placed on that tile)
 - A Button class (UI, not only for the menu, but also in-game, as the pieces will be accesed by the buttons on the side, as seen in the mock-up)
 - Texture Loader for the pieces (a good one, right now it's just a class with a static map, will probably template)
 - (scrapped for now) A level select screen (Menu class, and so much more)
-- Exception handling (missing level files, assets)
-- Make a config file for window size
+- Polish the levels, and finalize the level order
 
 ### Tema 0
 
@@ -55,14 +56,14 @@
 
 #### Cerințe
 - [x] separarea codului din clase în `.h` (sau `.hpp`) și `.cpp`
-- [ ] moșteniri
+- [x] moșteniri
   - [x] clasă cu atribut de tip pointer la o clasă de bază cu derivate
   - [x] funcții virtuale (pure) apelate prin pointeri de bază din clasa de mai sus, constructori virtuali (clone)
     - minim o funcție virtuală va fi **specifică temei** (e.g. nu simple citiri/afișări)
   - [x] apelarea constructorului din clasa de bază din constructori din derivate
   - [x] smart pointers
-  - [ ] `dynamic_cast`
-- [ ] suprascris cc/op= pentru copieri/atribuiri corecte, copy and swap
+  - [x] `dynamic_cast`
+- [x] suprascris cc/op= pentru copieri/atribuiri corecte, copy and swap
 - [ ] excepții
   - [ ] ierarhie proprie cu baza `std::exception` sau derivată din `std::exception`; minim 2 clase pentru erori specifice
   - [ ] utilizare cu sens: de exemplu, `throw` în constructor, `try`/`catch` în `main`
