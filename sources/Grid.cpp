@@ -4,7 +4,7 @@
 
 #include "../headers/Grid.h"
 
-Grid::Grid(const std::vector<std::string> &layout, int size, char id, unsigned int w, unsigned int h, const sf::Vector2i &pos = {20, 20}) : gridLayout{layout},
+Grid::Grid(const std::vector<std::string> &layout, int size, char id, int w, int h, const sf::Vector2i &pos = {20, 20}) : gridLayout{layout},
                                                                                                                    tileSize{size},
                                                                                                                    tileId{id},
                                                                                                                    widthGrid{w},
@@ -48,10 +48,10 @@ sf::Vector2i &Grid::getPostion() {
     return position;
 }
 
-unsigned int Grid::getWidthGrid() const {
+int Grid::getWidthGrid() const {
     return widthGrid;
 }
 
-unsigned int Grid::getHeightGrid() const {
+int Grid::getHeightGrid() const {
     return heightGrid;
 }

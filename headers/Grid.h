@@ -19,16 +19,16 @@ protected:
     std::vector<std::string> gridLayout;
     int tileSize;
     char tileId;
-    unsigned int widthGrid, heightGrid;
+    int widthGrid, heightGrid;
     sf::Vector2i position;
     std::shared_ptr<sf::Texture> tileTexture;
 
 protected:
-    Grid(const std::vector<std::string> &, int, char, unsigned int, unsigned int, const sf::Vector2i &);
+    Grid(const std::vector<std::string> &, int, char, int, int, const sf::Vector2i &);
 
 public:
-    [[nodiscard]] unsigned int getWidthGrid() const;
-    [[nodiscard]] unsigned int getHeightGrid() const;
+    [[nodiscard]] int getWidthGrid() const;
+    [[nodiscard]] int getHeightGrid() const;
 
     sf::Vector2i &getPostion();
     [[nodiscard]] const std::vector<std::string> &getGridLayout() const;
