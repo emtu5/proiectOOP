@@ -4,9 +4,11 @@
 
 #include "../headers/Grid.h"
 
-Grid::Grid(const std::vector<std::string> &layout, int size, char id, const sf::Vector2i &pos = {20, 20}) : gridLayout{layout},
+Grid::Grid(const std::vector<std::string> &layout, int size, char id, unsigned int w, unsigned int h, const sf::Vector2i &pos = {20, 20}) : gridLayout{layout},
                                                                                                                    tileSize{size},
                                                                                                                    tileId{id},
+                                                                                                                   widthGrid{w},
+                                                                                                                   heightGrid{h},
                                                                                                                    position{pos} {
     tileTexture = Textures::getTileTexture(tileId);
 }
@@ -35,7 +37,7 @@ void Grid::draw(sf::RenderTarget &target, sf::RenderStates) const {
 
 sf::Vector2i Grid::whereClicked(const sf::Vector2i &clickPosition) const {
     sf::Vector2i relativePosition = clickPosition - position;
-    return {relativePosition.y / tileSize, relativePosition.x / tileSize};
+    return {static_cast<int>(std::floor(1. * relativePosition.y / tileSize )), static_cast<int>(std::floor(1. * relativePosition.x / tileSize))};
 }
 
 char Grid::getId() const {
@@ -44,4 +46,12 @@ char Grid::getId() const {
 
 sf::Vector2i &Grid::getPostion() {
     return position;
+}
+
+unsigned int Grid::getWidthGrid() const {
+    return widthGrid;
+}
+
+unsigned int Grid::getHeightGrid() const {
+    return heightGrid;
 }
