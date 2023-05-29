@@ -1,4 +1,4 @@
-# Temple Stones v1.9.0
+# Temple Stones v2.0.0
 
 - A game where you place pieces on a board in order to fulfill certain winning conditions (such as filling up the board completely, all but one tile etc.).
 
@@ -70,8 +70,8 @@
 - [x] funcții și atribute `static`
 - [x] STL
 - [x] cât mai multe `const`
-- [ ] la sfârșit: commit separat cu adăugarea unei noi derivate fără a modifica restul codului
-- [ ] tag de `git`: de exemplu `v0.2`
+- [x] la sfârșit: commit separat cu adăugarea unei noi derivate fără a modifica restul codului
+- [x] tag de `git`: de exemplu `v0.2`
 
 ## Tema 3
 
