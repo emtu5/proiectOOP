@@ -1,4 +1,4 @@
-# Temple Stones v2.0.0
+# Temple Stones v2.0.1
 
 - A game where you place pieces on a board in order to fulfill certain winning conditions (such as filling up the board completely, all but one tile etc.).
 
@@ -50,7 +50,7 @@
   - crearea de obiecte și apelarea funcțiilor membru publice în main
   - vor fi adăugate în fișierul `tastatura.txt` exemple de date de intrare de la tastatură (dacă există)
 - [x] tag de `git`: de exemplu `v0.1`
-- [] serviciu de integrare continuă (CI); exemplu: GitHub Actions
+- [x] serviciu de integrare continuă (CI); exemplu: GitHub Actions
 
 ## Tema 2
 
