@@ -9,7 +9,7 @@
 
 class FilledBoard : public Board{
 public:
-    FilledBoard(const std::vector<std::string> &, int, char, const sf::Vector2i &);
+    FilledBoard(const std::vector<std::string> &, int, char, int, int, const sf::Vector2i &);
     bool checkWinCondition() override;
     [[nodiscard]] std::shared_ptr<Board> clone() const override;
 };

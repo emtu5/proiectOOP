@@ -11,7 +11,7 @@ class No2x2Board : public Board{
 private:
     unsigned int pieceRequirement;
 public:
-    No2x2Board(const std::vector<std::string> &, int, char, const sf::Vector2i &, unsigned int);
+    No2x2Board(const std::vector<std::string> &, int, char, int, int, const sf::Vector2i &, unsigned int);
     bool checkWinCondition() override;
     [[nodiscard]] std::shared_ptr<Board> clone() const override;
 };

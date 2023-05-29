@@ -4,7 +4,7 @@
 
 #include "../headers/FilledBut1Board.h"
 
-FilledBut1Board::FilledBut1Board(const std::vector<std::string> &boardLayout, int size, char id, const sf::Vector2i &pos) : Board(boardLayout, size, id, pos){}
+FilledBut1Board::FilledBut1Board(const std::vector<std::string> &boardLayout, int size, char id, int w, int h, const sf::Vector2i &pos) : Board(boardLayout, size, id, w, h, pos){}
 
 std::shared_ptr<Board> FilledBut1Board::clone() const {
     return std::make_shared<FilledBut1Board>(*this);

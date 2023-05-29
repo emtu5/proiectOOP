@@ -5,7 +5,7 @@
 #include "../headers/NoAdjacentBoard.h"
 #include <unordered_set>
 
-NoAdjacentBoard::NoAdjacentBoard(const std::vector<std::string> &boardLayout, int size, char id, const sf::Vector2i &pos, unsigned int no_pieces) : Board(boardLayout, size, id, pos), pieceRequirement(no_pieces){}
+NoAdjacentBoard::NoAdjacentBoard(const std::vector<std::string> &boardLayout, int size, char id, int w, int h, const sf::Vector2i &pos, unsigned int no_pieces) : Board(boardLayout, size, id, w, h, pos), pieceRequirement(no_pieces){}
 
 std::shared_ptr<Board> NoAdjacentBoard::clone() const {
     return std::make_shared<NoAdjacentBoard>(*this);
@@ -15,8 +15,8 @@ std::shared_ptr<Board> NoAdjacentBoard::clone() const {
 
 bool NoAdjacentBoard::checkWinCondition() {
     std::unordered_set<char> used_pieces;
-    for (int i = 0; i < BOARD_LENGTH; i++) {
-        for (int j = 0; j < BOARD_LENGTH; j++) {
+    for (int i = 0; i < heightGrid; i++) {
+        for (int j = 0; j < widthGrid; j++) {
             if (gridLayout[i][j] == emptyTile || gridLayout[i][j] == unusedTile) {
                 continue;
             }
@@ -29,8 +29,8 @@ bool NoAdjacentBoard::checkWinCondition() {
     }
     // horizontal adjacency
     std::cout << "Checking adjacency...\n";
-    for (int i = 0; i < BOARD_LENGTH; i++) {
-        for (int j = 0; j < BOARD_LENGTH - 1; j++) {
+    for (int i = 0; i < heightGrid; i++) {
+        for (int j = 0; j < widthGrid - 1; j++) {
             if (gridLayout[i][j] == emptyTile || gridLayout[i][j] == unusedTile
             || gridLayout[i][j + 1] == emptyTile || gridLayout[i][j + 1] == unusedTile) {
                 continue;
@@ -42,8 +42,8 @@ bool NoAdjacentBoard::checkWinCondition() {
         }
     }
     // vertical adjacency
-    for (int j = 0; j < BOARD_LENGTH; j++) {
-        for (int i = 0; i < BOARD_LENGTH - 1; i++) {
+    for (int j = 0; j < heightGrid; j++) {
+        for (int i = 0; i < widthGrid - 1; i++) {
             if (gridLayout[i][j] == emptyTile || gridLayout[i][j] == unusedTile
             || gridLayout[i+ 1][j] == emptyTile || gridLayout[i + 1][j] == unusedTile) {
                 continue;

@@ -17,7 +17,7 @@ public:
     BoardFactory(const BoardFactory&) = delete;
     BoardFactory& operator= (const BoardFactory&) = delete;
     static BoardFactory& get_factory();
-    static std::shared_ptr<Board> createBoard(const std::string &, const std::vector<std::string> &, int, const sf::Vector2i &, int);
+    static std::shared_ptr<Board> createBoard(const std::string &, const std::vector<std::string> &, int, int, int, const sf::Vector2i &, int);
 };
 
 
