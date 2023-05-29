@@ -22,7 +22,7 @@ private:
 
 public:
     // constructor
-    Piece(const std::vector<std::string> &, int, char, unsigned int, unsigned int, const sf::Vector2i &, bool, bool);
+    Piece(const std::vector<std::string> &, int, char, int, int, const sf::Vector2i &, bool, bool);
 
     // setter
     void updatePosition (const sf::Vector2i &);
