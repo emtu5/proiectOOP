@@ -20,8 +20,7 @@ Level::Level() = default;
 
     //Board
     std::vector<std::string> stringBoard;
-    for (int i = 0; i < BOARD_LENGTH; i++) {
-        fin >> currentLine;
+    while(fin >> currentLine && (currentLine[0] == emptyTile || currentLine[0] == unusedTile)) {
         stringBoard.emplace_back(currentLine);
     }
     //(stringBoard, TILE_SIZE, 'w', sf::Vector2i{BOARD_X, BOARD_Y});
@@ -36,25 +35,25 @@ Level::Level() = default;
             ids.insert(currentId);
             bool rotate, flip; fin >> rotate >> flip;
             std::vector<std::string> stringPiece;
-            for (int i = 0; i < PIECE_LENGTH; i++) {
-                fin >> currentLine;
+            while(fin >> currentLine && (currentLine[0] == emptyTile || currentLine[0] == unusedTile)) {
                 stringPiece.emplace_back(currentLine);
             }
-            unsigned int height = stringPiece.size();
-            if (height % 2 == 0) {
-                throw InvalidPieceDimensions(height, stringPiece[0].size());
+
+            int pieceWidth = static_cast<int>(stringPiece[0].size());
+            int pieceHeight = static_cast<int>(stringPiece.size());
+
+            if (pieceHeight % 2 == 0 || pieceWidth % 2 == 0) {
+                throw InvalidPieceDimensions(pieceHeight, pieceWidth);
             }
-            for (unsigned int i = 0; i < height; i++) {
-                if (height != stringPiece[i].size()) {
-                    throw InvalidPieceDimensions(height, stringPiece[0].size());
-                }
-            }
-            pieceInventory.emplace_back(stringPiece, TILE_SIZE, currentId, sf::Vector2i{PIECE_X, PIECE_Y}, rotate, flip);
+
+            pieceInventory.emplace_back(stringPiece, TILE_SIZE, currentId, pieceWidth, pieceHeight, sf::Vector2i{PIECE_X, PIECE_Y}, rotate, flip);
         } catch (GameExceptions &err) {
             std::cout << err.what() << '\n';
         }
     }
-    currentBoard = factory.createBoard(boardType, stringBoard, TILE_SIZE, sf::Vector2i{BOARD_X, BOARD_Y}, pieceInventory.size());
+    int boardWidth = static_cast<int>(stringBoard[0].size());
+    int boardHeight = static_cast<int>(stringBoard.size());
+    currentBoard = factory.createBoard(boardType, stringBoard, TILE_SIZE, boardWidth, boardHeight, sf::Vector2i{BOARD_X, BOARD_Y}, pieceInventory.size());
 }
 
 const std::vector<Piece> &Level::getPieceInventory() const {
@@ -71,7 +70,6 @@ std::unordered_map<int, Level> LevelList::levelList;
 
 
 void LevelList::loadLevels(int count) {
-    std::string x = "level";
     for (int i = 1; i <= count; i++) {
         try {
             if (i < 10) {
