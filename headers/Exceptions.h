@@ -25,7 +25,7 @@ public:
 class InvalidPieceDimensions : public GameExceptions{
 public:
     explicit InvalidPieceDimensions(unsigned int row, unsigned int col) :
-    GameExceptions("Every piece should internally have the same odd number of rows and columns, current dimensions: " + std::to_string(row) + "x" + std::to_string(col)) {}
+    GameExceptions("Every piece should have an odd number of rows and columns, current dimensions: " + std::to_string(row) + "x" + std::to_string(col)) {}
 };
 
 class SamePieceId : public GameExceptions {
