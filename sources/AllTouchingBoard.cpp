@@ -2,7 +2,7 @@
 // Created by Paul on 29/05/2023.
 //
 
-#include "AllTouchingBoard.h"
+#include "../headers/AllTouchingBoard.h"
 
 #include <unordered_set>
 #include <queue>
