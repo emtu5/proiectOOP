@@ -1,4 +1,4 @@
-# Temple Stones v1.8.0
+# Temple Stones v1.9.0
 
 - A game where you place pieces on a board in order to fulfill certain winning conditions (such as filling up the board completely, all but one tile etc.).
 
@@ -18,12 +18,11 @@
 ### Current state of the game
 
 - Basic piece placement logic has been implemented, as well as a super-basic level file parser and level advancement system.
-- Currently there are 12 levels, most of them unpolished.
+- Currently there are 12 levels, most of them unpolished, plus some testing levels (level 13).
 - Different board types have been implemented.
 
 ## To be implemented/done
 
-- Make pieces and boards possible to be sizes other than 5x5 and 11x11 respectively
 - Add restriction mechanic (in the mockup, the symbol on the board indicates that piece must be placed on that tile)
 - A Button class (UI, not only for the menu, but also in-game, as the pieces will be accesed by the buttons on the side, as seen in the mock-up)
 - Texture Loader for the pieces (a good one, right now it's just a class with a static map, will probably template)
