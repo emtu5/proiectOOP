@@ -9,6 +9,7 @@
 #include "FilledBut1Board.h"
 #include "NoAdjacentBoard.h"
 #include "No2x2Board.h"
+#include "AllTouchingBoard.h"
 
 class BoardFactory {
 private:

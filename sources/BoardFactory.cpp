@@ -15,5 +15,6 @@ BoardFactory::createBoard(const std::string &type, const std::vector<std::string
     else if (type == "fill-1") { return std::make_shared<FilledBut1Board>(boardLayout, size, 'x', w, h, pos);}
     else if (type == "noAdjacent") { return std::make_shared<NoAdjacentBoard>(boardLayout, size, 'y', w, h, pos, no_pieces);}
     else if (type == "no2x2") { return std::make_shared<No2x2Board>(boardLayout, size, 'z', w, h, pos, no_pieces);}
+    else if (type == "allTouch") { return std::make_shared<AllTouchingBoard>(boardLayout, size, 'z', w, h, pos, no_pieces);}
     return nullptr;
 }

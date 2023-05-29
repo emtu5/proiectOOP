@@ -93,7 +93,7 @@ endif()
 ###############################################################################
 
 # NOTE: update executable name in .github/workflows/cmake.yml:25 when changing name here
-add_executable(${PROJECT_NAME} main.cpp sources/Engine.cpp headers/Engine.h sources/Piece.cpp headers/Piece.h sources/Board.cpp headers/Board.h sources/Level.cpp headers/Level.h headers/Grid.h sources/Grid.cpp headers/Textures.h sources/Textures.cpp headers/FilledBoard.h sources/FilledBoard.cpp headers/FilledBut1Board.h sources/FilledBut1Board.cpp headers/NoAdjacentBoard.h sources/NoAdjacentBoard.cpp headers/No2x2Board.h sources/No2x2Board.cpp headers/BoardFactory.h headers/BoardFactory.cpp headers/Utils.h sources/Utils.cpp headers/Exceptions.h)
+add_executable(${PROJECT_NAME} main.cpp sources/Engine.cpp headers/Engine.h sources/Piece.cpp headers/Piece.h sources/Board.cpp headers/Board.h sources/Level.cpp headers/Level.h headers/Grid.h sources/Grid.cpp headers/Textures.h sources/Textures.cpp headers/FilledBoard.h sources/FilledBoard.cpp headers/FilledBut1Board.h sources/FilledBut1Board.cpp headers/NoAdjacentBoard.h sources/NoAdjacentBoard.cpp headers/No2x2Board.h sources/No2x2Board.cpp headers/BoardFactory.h sources/BoardFactory.cpp headers/Utils.h sources/Utils.cpp headers/Exceptions.h headers/AllTouchingBoard.h headers/AllTouchingBoard.cpp)
 
 ###############################################################################
 
