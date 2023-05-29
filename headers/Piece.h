@@ -7,15 +7,13 @@
 
 #include <SFML/Graphics.hpp>
 #include "Grid.h"
+#include <utility>
 #include <iostream>
 #include <array>
 #include <string>
 
-const int CELL_SIZE = 50;
-const int PIECE_LENGTH = 5;
 const int PIECE_X = 20;
 const int PIECE_Y = 20;
-const int AREA_TO_SPAWN = 300;
 
 class Piece : public Grid {
 
@@ -24,7 +22,7 @@ private:
 
 public:
     // constructor
-    Piece(const std::vector<std::string> &, int, char, const sf::Vector2i &, bool, bool);
+    Piece(const std::vector<std::string> &, int, char, unsigned int, unsigned int, const sf::Vector2i &, bool, bool);
 
     // setter
     void updatePosition (const sf::Vector2i &);

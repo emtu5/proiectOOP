@@ -6,29 +6,40 @@
 
 void Piece::rotatePiece() {
     if (canRotate) {
-        std::vector<std::string> temp = {
-                ".....",
-                ".....",
-                ".....",
-                ".....",
-                "....."
-        };
-        for (int i = 0; i < PIECE_LENGTH; i++) {
-            for (int j = 0; j < PIECE_LENGTH; j++) {
+        std::string tempRow(heightGrid, emptyTile);
+        std::vector<std::string> temp(widthGrid, tempRow);
+        for (unsigned int i = 0; i < heightGrid; i++) {
+            for (unsigned int j = 0; j < widthGrid; j++) {
                 //Rotate clockwise
-                temp[j][PIECE_LENGTH - 1 - i] = gridLayout[i][j];
+                temp[j][heightGrid - 1 - i] = gridLayout[i][j];
             }
         }
+
         gridLayout = temp;
+
+        // If you don't move the cursor, the piece will be misaligned
+        // Since piece is anchored to the top-left corner
+
+        if (heightGrid >= widthGrid) {
+            unsigned int offset = heightGrid - widthGrid; std::cout << offset;
+            position += {-static_cast<int>(TILE_SIZE * offset / 2), static_cast<int>(TILE_SIZE * offset / 2)};
+        }
+        else {
+            unsigned int offset = widthGrid - heightGrid;
+            position += {static_cast<int>(TILE_SIZE * offset / 2), -static_cast<int>(TILE_SIZE * offset / 2)};
+        }
+
+        // Swap height and width, now that it's rotated
+        std::swap(heightGrid, widthGrid);
     }
 }
 
 void Piece::flipPiece() {
     if (canFlip) {
-        for (int i = 0; i < PIECE_LENGTH; i++) {
-            for (int j = 0; j < PIECE_LENGTH / 2; j++) {
+        for (unsigned int i = 0; i < heightGrid; i++) {
+            for (unsigned int j = 0; j < widthGrid / 2; j++) {
                 //Flip by vertical axis
-                std::swap(gridLayout[i][j], gridLayout[i][PIECE_LENGTH - 1 - j]);
+                std::swap(gridLayout[i][j], gridLayout[i][widthGrid - 1 - j]);
             }
         }
     }
@@ -38,21 +49,20 @@ void Piece::flipPiece() {
 
 bool Piece::isClicked(const sf::Vector2i &clickPosition) const {
     sf::Vector2i gridCoords = whereClicked(clickPosition);
-    return gridCoords.x >= 0 && gridCoords.x < PIECE_LENGTH &&
-            gridCoords.y >=0 && gridCoords.y < PIECE_LENGTH &&
+    return gridCoords.x >= 0 && gridCoords.x < static_cast<int>(heightGrid) &&
+            gridCoords.y >=0 && gridCoords.y < static_cast<int>(widthGrid) &&
             gridLayout[gridCoords.x][gridCoords.y] == '#';
 }
 
 void Piece::updatePosition(const sf::Vector2i &cursorPosition) {
-    int offset = CELL_SIZE * PIECE_LENGTH / 2;
-    position = cursorPosition - sf::Vector2i{offset, offset};
+    unsigned int widthOffset = TILE_SIZE * widthGrid / 2;
+    unsigned int heightOffset = TILE_SIZE * heightGrid / 2;
+    position = cursorPosition - static_cast<sf::Vector2i>(sf::Vector2u{widthOffset, heightOffset});
 }
 
-
-
 std::ostream &operator<<(std::ostream &os, const Piece &p) {
-    for (int i = 0; i < PIECE_LENGTH; i++) {
-        for (int j = 0; j < PIECE_LENGTH; j++) {
+    for (unsigned int i = 0; i < p.getWidthGrid(); i++) {
+        for (unsigned int j = 0; j < p.getHeightGrid(); j++) {
             os << p.gridLayout[i][j];
         }
         os << '\n';
@@ -60,6 +70,8 @@ std::ostream &operator<<(std::ostream &os, const Piece &p) {
     return os;
 }
 
-Piece::Piece(const std::vector<std::string> &pieceLayout, int size, char id, const sf::Vector2i &pos, bool rotate, bool flip) : Grid(pieceLayout, size, id, pos),
-                                                                                                                    canRotate{rotate},
-                                                                                                                    canFlip{flip} {}
+Piece::Piece(const std::vector<std::string> &pieceLayout, int size, char id, unsigned int w, unsigned int h,
+             const sf::Vector2i &pos, bool rotate, bool flip) : Grid(pieceLayout, size, id, w, h, pos),
+                                                                                    canRotate{rotate},
+                                                                                    canFlip{flip} {}
+
