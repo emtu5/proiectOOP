@@ -11,7 +11,7 @@
 #include "Piece.h"
 #include "Board.h"
 #include "Level.h"
-#include "Utils.h"
+#include "GameUtils.h"
 #include "Exceptions.h"
 
 const int STARTING_LEVEL = 1;

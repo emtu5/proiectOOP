@@ -91,10 +91,10 @@ void Engine::draw() {
         window.draw(*piece);
     }
 
-    Utils::drawLevelMessage(window, gameFont, currentLevelNumber, currentBoard);
+    GameUtils::drawLevelMessage(window, gameFont, currentLevelNumber, currentBoard);
 
     if (hasFinishedLevel) {
-        Utils::drawLevelComplete(window, gameFont);
+        GameUtils::drawLevelComplete(window, gameFont);
     }
     window.display();
 }
