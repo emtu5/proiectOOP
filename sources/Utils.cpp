@@ -31,6 +31,9 @@ void Utils::drawLevelMessage(sf::RenderWindow &window, sf::Font &font, int level
     else if (std::dynamic_pointer_cast<No2x2Board>(board)) {
         color = {150, 150, 255};
     }
+    else if (std::dynamic_pointer_cast<AllTouchingBoard>(board)) {
+        color = {150, 100, 166};
+    }
 
     sf::Vector2f pos = static_cast<sf::Vector2f>(board->getPostion() - sf::Vector2i{0, 24});
     sf::Text levelText = getText(font, "Level " + std::to_string(levelNumber), 23, pos, color);
