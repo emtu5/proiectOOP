@@ -14,6 +14,7 @@
 - Left Click: Picks up a piece. Click again to release it. If the piece has space to fit on the board, it will be placed on it.
 - Right Click: Rotates the held piece clockwise.
 - Middle Click: Flips the piece.
+- There's no level select screen, so if you want to go to a certain level, close the game, and write the level number in resources/latestlevel.txt.
 
 ### Current state of the game
 
