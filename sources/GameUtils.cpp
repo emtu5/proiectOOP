@@ -2,11 +2,11 @@
 // Created by Paul on 28/05/2023.
 //
 
-#include "../headers/Utils.h"
+#include "../headers/GameUtils.h"
 
 #include <cmath>
 
-sf::Text Utils::getText(sf::Font &font, const std::string &message, int size, const sf::Vector2f &pos, const sf::Color &color) {
+sf::Text GameUtils::getText(sf::Font &font, const std::string &message, int size, const sf::Vector2f &pos, const sf::Color &color) {
     sf::Text text;
     text.setFont(font);
     text.setString(message);
@@ -16,7 +16,7 @@ sf::Text Utils::getText(sf::Font &font, const std::string &message, int size, co
     return text;
 }
 
-void Utils::drawLevelMessage(sf::RenderWindow &window, sf::Font &font, int levelNumber, const std::shared_ptr<Board> &board) {
+void GameUtils::drawLevelMessage(sf::RenderWindow &window, sf::Font &font, int levelNumber, const std::shared_ptr<Board> &board) {
     sf::Color color = sf::Color::White;
 
     if (std::dynamic_pointer_cast<FilledBoard>(board)) {
@@ -40,7 +40,7 @@ void Utils::drawLevelMessage(sf::RenderWindow &window, sf::Font &font, int level
     window.draw(levelText);
 }
 
-void Utils::drawLevelComplete(sf::RenderWindow &window, sf::Font &font) {
+void GameUtils::drawLevelComplete(sf::RenderWindow &window, sf::Font &font) {
     sf::RectangleShape overlay;
     overlay.setSize(static_cast<sf::Vector2f>(window.getSize()));
     overlay.setFillColor({0, 0, 0, 127});
