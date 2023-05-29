@@ -61,8 +61,8 @@ void Piece::updatePosition(const sf::Vector2i &cursorPosition) {
 }
 
 std::ostream &operator<<(std::ostream &os, const Piece &p) {
-    for (int i = 0; i < p.getHeightGrid(); i++) {
-        for (int j = 0; j < p.getWidthGrid(); j++) {
+    for (int i = 0; i < p.heightGrid; i++) {
+        for (int j = 0; j < p.widthGrid; j++) {
             os << p.gridLayout[i][j];
         }
         os << '\n';

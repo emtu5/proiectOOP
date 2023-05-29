@@ -72,8 +72,8 @@ void Board::removePiece(const char &id) {
 }
 
 std::ostream &operator<<(std::ostream &os, const Board &b) {
-    for (int i = 0; i < b.getHeightGrid(); i++) {
-        for (int j = 0; j < b.getWidthGrid(); j++) {
+    for (int i = 0; i < b.heightGrid; i++) {
+        for (int j = 0; j < b.widthGrid; j++) {
             os << b.gridLayout[i][j];
         }
         os << '\n';
