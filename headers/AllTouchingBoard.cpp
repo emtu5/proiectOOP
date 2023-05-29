@@ -31,7 +31,7 @@ bool AllTouchingBoard::checkWinCondition() {
 
     // flood-fill
 
-    int startI, startJ;
+    int startI = 0, startJ = 0;
     for (int i = 0; i < heightGrid; i++) {
         for (int j = 0; j < widthGrid; j++) {
             if (gridLayout[i][j] != emptyTile && gridLayout[i][j] != unusedTile) {
@@ -45,7 +45,7 @@ bool AllTouchingBoard::checkWinCondition() {
     std::vector<std::string> tempFloodGrid = gridLayout;
     std::vector<std::pair<int, int>> directions = {{0, 1}, {0, -1}, {1, 0}, {-1, 0}};
     char markedTile = '!';
-    
+
     flood.emplace(startI, startJ);
     while(!flood.empty()) {
         std::pair<int, int> current = flood.front();
