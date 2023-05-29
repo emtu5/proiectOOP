@@ -17,9 +17,9 @@ void Textures::loadTextures() {
         }
     }
 
-    for (char id = 'w'; id <= 'z'; id++) {
+    for (char id = 'z'; id >= 'v'; id--) {
         try {
-            std::string path = "resources/tiles/board" + std::to_string(id - 'w' + 1) + ".png";
+            std::string path = "resources/tiles/board" + std::to_string('z' - id + 1) + ".png";
             if (!tileTextures[id].loadFromFile(path)) {
                 throw FileNotFound(path);
             }
