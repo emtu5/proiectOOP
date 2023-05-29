@@ -16,7 +16,7 @@ std::shared_ptr<Board> No2x2Board::clone() const {
 bool No2x2Board::checkWinCondition() {
     std::unordered_set<char> used_pieces;
     for (int i = 0; i < heightGrid; i++) {
-        for (int j = 0; j < widthGrid - 1; j++) {
+        for (int j = 0; j < widthGrid; j++) {
             if (gridLayout[i][j] == emptyTile || gridLayout[i][j] == unusedTile) {
                 continue;
             }
