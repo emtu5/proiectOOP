@@ -44,7 +44,7 @@ Engine::Engine(sf::Vector2i res) : currentLevelNumber(STARTING_LEVEL), totalLeve
     LevelList::loadLevels(totalLevelCount);
     videoMode.width = res.x;
     videoMode.height = res.y;
-    window.create(videoMode, "Temple Stones v1.8.0", sf::Style::Close);
+    window.create(videoMode, "Temple Stones v2.0.0", sf::Style::Close);
 }
 
 void Engine::run() {

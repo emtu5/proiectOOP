@@ -19,7 +19,7 @@
 ### Current state of the game
 
 - Basic piece placement logic has been implemented, as well as a super-basic level file parser and level advancement system.
-- Currently there are 12 levels, most of them unpolished, plus some testing levels (level 13).
+- Currently there are 12 levels, most of them unpolished, plus some testing levels (level 13-14).
 - Different board types have been implemented.
 
 ## To be implemented/done
